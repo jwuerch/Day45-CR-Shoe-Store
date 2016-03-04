@@ -54,7 +54,14 @@
                     <h4>Current Brands Associated With This Store:</h4>
                     <ul>
                         {% for brand in brands %}
-                            <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
+                            <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a>
+                            <form action="/drop_brand" method="post" class="form-inline">
+                                <input type="hidden" name="_method" value="delete">
+                                <input type="hidden" name="brand_id" value="{{ brand.getId }}">
+                                <input type="hidden" name="store_id" value="{{ store.getId }}">
+                                <button type="submit" class="">Drop Brand</button>
+                            </form>
+                            </li>
                         {% endfor %}
                     </ul>
 
