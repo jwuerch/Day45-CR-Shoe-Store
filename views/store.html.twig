@@ -47,7 +47,7 @@
                     <h4>Current Brands Associated With This Store:</h4>
                     <ul>
                         {% for brand in brands %}
-                            <li>{{ brand.getName }}</li>
+                            <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
                         {% endfor %}
                     </ul>
 

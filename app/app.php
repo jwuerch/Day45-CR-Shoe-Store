@@ -66,7 +66,7 @@
         $new_location = $_POST['new_location'];
         $store->update($new_name, $new_location);
         $brands = $store->getBrands();
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $brands));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $brands, 'all_brands' => Brand::getAll()));
     });
 
 
@@ -103,6 +103,14 @@
         $brand->addStore($store);
         $stores = $brand->getStores();
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'all_stores' => Store::getAll(), 'stores' => $stores));
+    });
+
+    $app->patch('/update_brand', function() use ($app) {
+        $brand = Brand::find($_POST['brand_id']);
+        $new_name = $_POST['new_name'];
+        $brand->update($new_name);
+        $stores = $brand->getstores();
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => $stores, 'all_stores' => Store::getAll()));
     });
 
 

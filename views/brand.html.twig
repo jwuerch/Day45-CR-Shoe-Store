@@ -10,6 +10,18 @@
                         <li><span class="underline-class">Name</span>: {{brand.getName }}</li>
                     </ul>
 
+                    <h5>Update your Brand information:</h5>
+                    <form action="/update_brand" method="post" class="form-inline">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="brand_id" value="{{ brand.getId }}">
+                        <div class="form-group">
+                            <label for="brand_name">Change Name:</label>
+                            <input type="text" id="new_name" name="new_name" class="form-select">
+                        </div>
+                        <button class="btn btn-default" type="submit">Update!</button>
+                    </form>
+
+                    <br>
                     <h5>Add a Store to your Brand</h5>
                     <form action="/brand_add_store" method="post">
                         <input type="hidden" name="brand_id" value="{{ brand.getId }}">
