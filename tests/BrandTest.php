@@ -4,6 +4,8 @@
     * @backupStaticAttributes disabled
     */
     require_once "src/Brand.php";
+    require_once "src/Store.php";
+
     $server = 'mysql:host=localhost;dbname=shoes_test';
     $username = 'root';
     $password = 'root';
@@ -13,7 +15,7 @@
 
         protected function teardown() {
             Brand::deleteAll();
-
+            Store::deleteAll();
         }
 
         function testGetName() {
@@ -112,7 +114,7 @@
 
         function testFind() {
             //Arrange;
-            $name = 'Zapatos';
+            $name = 'Nike';
             $id = 2;
             $test_brand = new Brand($name, $id);
             $test_brand->save();
@@ -123,6 +125,26 @@
 
             //Assert;
             $this->assertEquals($test_brand, $result);
+        }
+
+        function testAddStore() {
+            //Arrange;
+            $name = 'Nike';
+            $id = 2;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name = 'Zapatos';
+            $location = '111 SW St.';
+            $test_store = new Store($name, $location);
+            $test_store->save();
+
+            //Assert;
+            $test_brand->addStore($test_store);
+            $result = $test_brand->getStores();
+
+            //Act;
+            $this->assertEquals([$test_store], $result);
         }
 
     }

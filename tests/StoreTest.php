@@ -14,6 +14,7 @@
 
         protected function teardown() {
             Store::deleteAll();
+            Brand::deleteAll();
 
         }
 
