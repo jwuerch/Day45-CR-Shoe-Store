@@ -44,8 +44,13 @@
             $this->setLocation($new_location);
         }
 
-        public function addBrand($brand) {
-            $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$this->getId()}, {$brand->getId()})");
+        public function addBrand($added_brand) {
+                foreach ($this->getBrands() as $brand) {
+                    if ($added_brand->getName() == $brand->getName()) {
+                        return 'You already have this brand in this store.';
+                    }
+                }
+            $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$this->getId()}, {$added_brand->getId()})");
         }
 
         public function getBrands() {
