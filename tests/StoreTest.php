@@ -210,6 +210,29 @@
 
             //Assert;
             $this->assertEquals([$test_store2], $result);
+        }
+
+        function testSearch() {
+            //Arrange;
+            $name = 'Zapatos';
+            $location = '111';
+            $test_store = new Store($name, $location);
+            $test_store->save();
+
+            $name2 = 'Nike';
+            $test_store2 = new Store($name2, $location);
+            $test_store2->save();
+
+            $name3 = 'Nickel';
+            $test_store3 = new Store($name3, $location);
+            $test_store3->save();
+
+            //Act;
+            $search_term = 'Nikee';
+            $result = Store::searchByName($search_term);
+
+            //Assert;
+            $this->assertEquals([$test_store2, $test_store3], $result);
 
         }
 

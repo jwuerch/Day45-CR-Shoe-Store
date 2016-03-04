@@ -97,6 +97,18 @@
             return $found_store;
         }
 
+        static function searchByName($search_term) {
+            $all_stores = Store::getAll();
+            $found_stores = array();
+            foreach($all_stores as $store) {
+                similar_text($search_term, $store->getName(), $percentage);
+                if ($percentage > 35) {
+                    array_push($found_stores, $store);
+                }
+            }
+            return $found_stores;
+        }
+
 
     }
 
