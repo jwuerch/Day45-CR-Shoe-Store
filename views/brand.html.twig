@@ -24,13 +24,20 @@
                     <br>
                     <h5>Add a Store to your Brand</h5>
                     <form action="/brand_add_store" method="post">
-                        <input type="hidden" name="brand_id" value="{{ brand.getId }}">
+                        <input type="hidden" name="_method" value="{{ brand.getId }}">
                         <select name="store_id">
                             {% for store in all_stores %}
                                 <option value="{{ store.getId }}">{{ store.getName }}</option>
                             {% endfor %}
                         </select>
                         <button type="submit" class="btn btn-success">Add!</button>
+                    </form>
+
+                    <h5>Delete Brand:</h5>
+                    <form action="/delete_brand" method="post" class="form-inline">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="brand_id" value="{{ brand.getId }}">
+                        <button type="submit" class="btn btn-danger">Delete THIS Brand</button>
                     </form>
                 </div><!-- END COLUMN 1 -->
 
@@ -39,7 +46,7 @@
                     <h4>Here are the current Stores assocaited with your Brand:</h4>
                     <ul>
                         {% for store in stores %}
-                            <li>{{ store.getName }}</li>
+                            <li><a href="/store/{{ store.getId }}">{{ store.getName }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

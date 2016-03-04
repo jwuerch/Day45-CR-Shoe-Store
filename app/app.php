@@ -113,6 +113,12 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => $stores, 'all_stores' => Store::getAll()));
     });
 
+    $app->delete('/delete_brand', function() use ($app) {
+        $brand = Brand::find($_POST['brand_id']);
+        $brand->delete();
+        return $app['twig']->render('brands.html.twig', array('all_brands' => Brand::getAll()));
+    });
+
 
     return $app;
 
