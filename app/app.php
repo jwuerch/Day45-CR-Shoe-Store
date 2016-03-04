@@ -8,6 +8,8 @@
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
+
+
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
@@ -47,6 +49,15 @@
     $app->post('/delete_all_stores', function() use ($app) {
         Store::deleteAll();
         return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll()));
+    });
+
+    $app->patch('/update_store', function() use ($app) {
+        $store = Store::find($_POST['store_id']);
+        $new_name = $_POST['new_name'];
+        $new_location = $_POST['new_location'];
+        $store->update($new_name, $new_location);
+        $brands = $store->getBrands();
+        return $app['twig']->render('store.html.twig', array('store' => $store));
     });
 
 

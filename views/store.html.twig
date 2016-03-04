@@ -1,9 +1,59 @@
 <!DOCTYPE html>
 <html>
-    {% include 'header.html '%}
+    {% include 'header.html' %}
     <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Here is the current information for {{ store.getName }}:</h4>
+                    <ul>
+                        <li><span class="underline-class">Location</span>: {{ store.getLocation }}</li>
+                    </ul>
+                    <br>
+                    <h5>Update Your Store Information.</h5>
+                    <form action="/update_store" method="post" class="form-inline">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="store_id" value="{{ store.getId }}">
+
+                        <div class="form-group">
+                            <label for="new_name">Update Name:</label>
+                            <input id="new_name" name="new_name" type="text" class="form-select">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_location">Update Location:</label>
+                            <input id="new_location" name="new_location" type="text" class="form-select">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Update!</button>
+                    </form>
+
+                    <br>
+
+                    <h5>Add a Brand to your store.</h5>
+                    <form action="/store_add_brand" method="post" class="form-inline">
+                        <div class="form-group">
+                            <label for="brand_name">Brand Name:</label>
+                            <input type="text" id="brand_name" name="brand_name" class="form-select">
+                        </div>
+                        <button class="btn btn-success" type="submit">Add!</button>
+                    </form>
+
+                </div><!-- End First Column -->
+
+                <div class="col-sm-6">
+                    <h4>Current Brands Associated With This Store:</h4>
+                    <ul>
+                        {% for brand in brands %}
+                            <li>{{ brand.getName }}</li>
+                        {% endfor %}
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
 
     </body>
 
-    {% include 'footer.html '%}
+    {% include 'footer.html' %}
 </html>
