@@ -33,6 +33,11 @@
         return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll()));
     });
 
+    $app->get('/search_stores', function() use ($app) {
+        $results = Store::searchByName($_GET['search_term']);
+        return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll(), 'results' => $results));
+    });
+
     $app->get('/store/{id}', function($id) use ($app) {
         $store = Store::find($id);
         $brands = $store->getBrands();
@@ -115,7 +120,7 @@
         $brand = Brand::find($_POST['brand_id']);
         $new_name = $_POST['new_name'];
         $brand->update($new_name);
-        $stores = $brand->getstores();
+        $stores = $brand->getStores();
         return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => $stores, 'all_stores' => Store::getAll()));
     });
 

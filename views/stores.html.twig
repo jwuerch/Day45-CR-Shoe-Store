@@ -23,6 +23,21 @@
                         <button type="/submit" class="btn btn-danger">Delete ALL Stores</button>
                     </form>
 
+                    <h5>Search for a particular store:</h5>
+                    <form action="/search_stores">
+                        <div class="form-group">
+                            <label for="search_term">Search Stores</label>
+                            <input id="search_term" name="search_term" type="search" class="form-select">
+                        </div>
+                        <button type="hidden submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <br>
+                    <ul>
+                    {% for result in results %}
+                        <li><a href="/store/{{ result.getId }}">{{ result.getName }}</a></li>
+                    {% endfor %}
+                    </ul>
+
                 </div><!-- End Column1 -->
                 <div class="col-sm-6">
                     <h3>Here are the current Stores in your database:</h3>
