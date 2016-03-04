@@ -1,0 +1,30 @@
+#row-1 {
+    margin-top:50px;
+    height:350px;
+    border:1px solid #000;
+}
+
+#row-1 {
+    background:#F8F8F8;
+}
+
+.navbar {
+    background: #F8F8F8;
+}
+
+footer {
+    margin-top:100px;
+    background: #333;
+}
+
+footer a {
+    color:#fff;
+}
+
+header {
+    height:100px;
+}
+
+.underline-class {
+    text-decoration:underline;
+}

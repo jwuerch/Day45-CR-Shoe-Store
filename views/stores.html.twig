@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    {% include 'header.html' %}
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Add a store</h4>
+                    <form action="/add_store" method="post" class="form-inline">
+                        <div class=form-group>
+                            <label for="store_name">Store Name:</label>
+                            <input id="store_name" name="store_name" type="text" class="form-select">
+                        </div>
+
+                        <div class=form-group>
+                            <label for="store_location">Store Location:</label>
+                            <input id="store_location" name="store_location" type="text" class="form-select">
+                        </div>
+                        <button type="submit" class="btn btn-success">Add Store</button>
+                    </form>
+                    <br>
+                    <form action="/delete_all_stores" method="post">
+                        <button type="/submit" 
+                    </form>
+
+                </div><!-- End Column1 -->
+                <div class="col-sm-6">
+                    <h3>Here are the current Stores in your database:</h3>
+
+                    {% if stores is empty %}
+                    <p>There are no stores currently in your database. Use the forms on the left to add a store.</p>
+                    {% endif %}
+
+                    <ul>
+                    {% for store in all_stores %}
+                        <li><span class="underline-class">{{ store.getName() }}</span> - {{ store.getLocation() }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    {% include 'footer.html' %}
+</html>
