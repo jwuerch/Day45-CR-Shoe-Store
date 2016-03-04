@@ -194,6 +194,29 @@
 
         }
 
+        function testSearchByName() {
+            //Arrange;
+            $name = 'Adidas';
+            $test_brand = new Brand($name);
+            $test_brand->save();
+
+            $name2 = 'Nike';
+            $test_brand2 = new Brand($name2);
+            $test_brand2->save();
+
+            $name3 = 'Reebok';
+            $test_brand3 = new Brand($name3);
+            $test_brand3->save();
+
+            //Act;
+            $search_term = 'Nikee';
+            $result = Brand::searchByName($search_term);
+
+            //Assert;
+            $this->assertEquals([$test_brand2, $test_brand3], $result);
+
+        }
+
     }
 
 

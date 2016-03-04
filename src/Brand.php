@@ -85,6 +85,19 @@
             }
             return $found_brand;
         }
+
+        static function searchByName($search_term) {
+            $all_brands = Brand::getAll();
+            $found_brands = array();
+            foreach($all_brands as $brand) {
+                similar_text($search_term, $brand->getName(), $percentage);
+                var_dump($percentage);
+                if ($percentage > 35) {
+                    array_push($found_brands, $brand);
+                }
+            }
+            return $found_brands;
+        }
     }
 
  ?>
