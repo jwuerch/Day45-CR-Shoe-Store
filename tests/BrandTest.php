@@ -134,7 +134,7 @@
             $test_brand = new Brand($name, $id);
             $test_brand->save();
 
-            $name = 'Zapatos';
+            $name2 = 'Zapatos';
             $location = '111 SW St.';
             $test_store = new Store($name, $location);
             $test_store->save();
@@ -145,6 +145,34 @@
 
             //Act;
             $this->assertEquals([$test_store], $result);
+        }
+
+        function testGetStores() {
+            //Arrange;
+            $name = 'Nike';
+            $id = 2;
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name2 = 'Zapatos';
+            $location = '111 SW St.';
+            $test_store = new Store($name2, $location);
+            $test_store->save();
+
+            $name3 = 'Zapatos2';
+            $location2 = '111 NW St.';
+            $test_store2 = new Store($name3, $location2);
+            $test_store2->save();
+
+            $test_brand->addStore($test_store);
+            $test_brand->addStore($test_store2);
+
+            //Act;
+            $result = $test_brand->getStores();
+
+            //Assert;
+            $this->assertEquals([$test_store, $test_store2], $result);
+
         }
 
     }

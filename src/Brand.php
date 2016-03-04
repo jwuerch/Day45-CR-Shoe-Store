@@ -42,7 +42,6 @@
             JOIN stores_brands ON (brands.id = stores_brands.brand_id)
             JOIN stores ON (stores_brands.store_id = stores.id)
             WHERE brand_id = {$this->getId()}");
-            print_r($returned_stores);
             $stores = array();
             foreach ($returned_stores as $store) {
                 $name = $store['name'];
