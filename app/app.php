@@ -43,7 +43,7 @@
         $location = $_POST['store_location'];
         $new_store = new Store($name, $location);
         $new_store->save();
-        return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll(), 'all_brands' => Brand::getAll()));
+        return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll()));
     });
 
     $app->post('/delete_all_stores', function() use ($app) {
@@ -73,7 +73,16 @@
     //**
     //**
     //**
+    $app->get('/brands', function() use ($app) {
+        return $app['twig']->render('brands.html.twig', array('all_brands' => Brand::getAll()));
+    });
 
+    $app->post('/add_brand', function() use ($app) {
+        $name = $_POST['name'];
+        $new_brand = new Brand($name);
+        $new_brand->save();
+        return $app['twig']->render('brands.html.twig', array('all_brands' => Brand::getAll()));
+    });
 
     return $app;
 

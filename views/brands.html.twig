@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    {% include 'header.html' %}
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Add a brand.</h4>
+                    <form action="/add_brand" method="post" class="form-inline">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-select">
+                        </div>
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+                </div><!-- END col-1 -->
+
+                <div class="col-sm-6">
+                    <h3>Here are the current Brands in your database:</h3>
+                    <ul>
+                        {% for brand in all_brands %}
+                            <li>{{ brand.getName }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    {% include 'footer.html' %}
+</html>
