@@ -31,10 +31,13 @@
 
                     <h5>Add a Brand to your store.</h5>
                     <form action="/store_add_brand" method="post" class="form-inline">
-                        <div class="form-group">
-                            <label for="brand_name">Brand Name:</label>
-                            <input type="text" id="brand_name" name="brand_name" class="form-select">
-                        </div>
+                        <input type="hidden" name="store_id" value="{{ store.getId }}">
+                        <label for="brand_id">Select a current Brand</label>
+                        <select name="brand_id">
+                            {% for brand in all_brands %}
+                            <option value="{{ brand.getId }}">{{ brand.getName }}</option>
+                            {% endfor %}
+                        </select>
                         <button class="btn btn-success" type="submit">Add!</button>
                     </form>
 
