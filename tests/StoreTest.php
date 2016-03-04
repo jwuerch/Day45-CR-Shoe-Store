@@ -192,6 +192,27 @@
 
         }
 
+        function testDelete() {
+            //Arrange;
+            $name = 'Adidas';
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name2 = 'Nike';
+            $id2 = 2;
+            $test_store2 = new Store($name2, $id2);
+            $test_store2->save();
+
+            //Act;
+            $test_store->delete();
+            $result = Store::getAll();
+
+            //Assert;
+            $this->assertEquals([$test_store2], $result);
+
+        }
+
 
 
     }
