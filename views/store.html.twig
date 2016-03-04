@@ -41,6 +41,13 @@
                         <button class="btn btn-success" type="submit">Add!</button>
                     </form>
 
+                    <h5>Delete Store:</h5>
+                    <form action="/delete_store" method="post" class="form-inline">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="store_id" value="{{ store.getId }}">
+                        <button type="submit" class="btn btn-danger">Delete THIS Store</button>
+                    </form>
+
                 </div><!-- End First Column -->
 
                 <div class="col-sm-6">

@@ -69,6 +69,12 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $brands, 'all_brands' => Brand::getAll()));
     });
 
+    $app->delete('/delete_store', function() use ($app) {
+        $store = Store::find($_POST['store_id']);
+        $store->delete();
+        return $app['twig']->render('stores.html.twig', array('all_stores' => Store::getAll()));
+    });
+
 
     //** All information for BRAND class
     //**
