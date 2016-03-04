@@ -23,7 +23,7 @@
                     <h3>Here are the current Brands in your database:</h3>
                     <ul>
                         {% for brand in all_brands %}
-                            <li>{{ brand.getName }}</li>
+                            <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

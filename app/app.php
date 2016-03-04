@@ -77,6 +77,11 @@
         return $app['twig']->render('brands.html.twig', array('all_brands' => Brand::getAll()));
     });
 
+    $app->get('/brand/{id}', function($id) use ($app) {
+        $brand = Brand::find($id);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand));
+    });
+
     $app->post('/add_brand', function() use ($app) {
         $name = $_POST['name'];
         $new_brand = new Brand($name);
@@ -88,6 +93,7 @@
         Brand::deleteAll();
         return $app['twig']->render('brands.html.twig', array('all_brands' => Brand::getAll()));
     });
+
 
     return $app;
 
