@@ -12,6 +12,8 @@ _This web app will give the user the ability to add brands with certain stores a
 
 * _Clone the Repository_
 * _In your terminal, navigate to the project's main folder and run `composer install` to get Silex, Twig, and PHPUnit installed._
+* _Type in `apachectl start` to get the apache web server started._
+* _type in `mysql.server start` and then `mysql -uroot -proot` to set a username and password._
 * _Navigate to the project's web folder using terminal and enter `php -S localhost:8000`_
 * _Open PHPMyAdmin by going to localhost:8080/phpmyadmin in your web browser_
 * _In phpmyadmin choose the Import tab and choose your database file and click Go. It's important to make sure you're not importing to a database that already exists, so make sure that a database with the same name as the one you're importing doesn't already exist._
